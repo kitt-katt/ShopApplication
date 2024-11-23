@@ -28,6 +28,23 @@ namespace ShopApplication.BLL
 
         public async Task StockProductAsync(string shopCode, string productName, int quantity, decimal price)
         {
+            // Проверка существования магазина
+            var shop = await _shopRepository.GetShopByCodeAsync(shopCode);
+            if (shop == null)
+            {
+                Console.WriteLine("Магазин с указанным кодом не найден.");
+                return;
+            }
+
+            // Проверка существования товара
+            var product = await _productRepository.GetProductByNameAsync(productName);
+            if (product == null)
+            {
+                Console.WriteLine("Товар с указанным названием не найден.");
+                return;
+            }
+
+            // Добавление товара в магазин
             var stock = new Stock
             {
                 ShopCode = shopCode,
@@ -35,12 +52,20 @@ namespace ShopApplication.BLL
                 Quantity = quantity,
                 Price = price
             };
+
             await _shopRepository.AddStockAsync(stock);
+            Console.WriteLine("Товар успешно добавлен в магазин.");
         }
 
         public async Task<Shop> FindCheapestShopAsync(string productName)
         {
             var stocks = await _shopRepository.GetStocksByProductAsync(productName);
+            if (!stocks.Any())
+            {
+                Console.WriteLine("Товар не найден в наличии ни в одном магазине.");
+                return null;
+            }
+
             var cheapestStock = stocks.OrderBy(s => s.Price).FirstOrDefault();
             return cheapestStock != null ? await _shopRepository.GetShopByCodeAsync(cheapestStock.ShopCode) : null;
         }
@@ -48,27 +73,46 @@ namespace ShopApplication.BLL
         public async Task<IEnumerable<Stock>> GetAffordableItemsAsync(string shopCode, decimal budget)
         {
             var stocks = await _shopRepository.GetStocksByShopAsync(shopCode);
-            return stocks.Where(s => s.Price <= budget).ToList();
+            if (!stocks.Any())
+            {
+                Console.WriteLine("В магазине нет товаров.");
+                return Enumerable.Empty<Stock>();
+            }
+
+            return stocks
+                .Where(s => s.Price <= budget)
+                .OrderBy(s => s.Price)
+                .ToList();
         }
 
         public async Task<decimal?> BuyProductsAsync(string shopCode, Dictionary<string, int> products)
         {
             var stocks = await _shopRepository.GetStocksByShopAsync(shopCode);
+            if (!stocks.Any())
+            {
+                Console.WriteLine("В магазине нет товаров.");
+                return null;
+            }
 
             decimal totalCost = 0;
+
             foreach (var (productName, quantity) in products)
             {
                 var stock = stocks.FirstOrDefault(s => s.ProductName == productName);
                 if (stock == null || stock.Quantity < quantity)
-                    return null; // Недостаточно товаров или товара нет в наличии.
+                {
+                    Console.WriteLine($"Недостаточно товара {productName} в магазине.");
+                    return null;
+                }
 
                 totalCost += stock.Price * quantity;
-                stock.Quantity -= quantity;
+                stock.Quantity -= quantity; // Обновляем количество
             }
 
             await _shopRepository.UpdateStocksAsync(stocks);
             return totalCost;
         }
+
 
         public async Task<Shop> FindCheapestShopForProductsAsync(Dictionary<string, int> products)
         {
@@ -100,6 +144,16 @@ namespace ShopApplication.BLL
             }
 
             return cheapestShop;
+        }
+
+        public async Task<IEnumerable<Shop>> GetAllShopsAsync()
+        {
+            return await _shopRepository.GetAllShopsAsync();
+        }
+
+        public async Task<IEnumerable<Product>> GetAllProductsAsync()
+        {
+            return await _productRepository.GetAllProductsAsync();
         }
     }
 }
