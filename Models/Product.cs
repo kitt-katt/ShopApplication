@@ -1,10 +1,8 @@
 namespace ShopApplication.Models
 {
-    public class Shop
+    public class Product
     {
-        public string Code { get; set; } // Уникальный код
-        public string Name { get; set; }
-        public string Address { get; set; }
+        public string Name { get; set; } // Уникальное имя
         public ICollection<Stock> Stocks { get; set; } = new List<Stock>();
     }
 }
