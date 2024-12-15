@@ -8,4 +8,9 @@ namespace ShopSolution.DAL.Repositories
         Task<Product?> GetByIdAsync(int id);
         Task CreateAsync(string name);
     }
+
+    public interface IExtendedProductRepository : IProductRepository
+    {
+        Task<List<Product>> GetAllAsync();
+    }
 }

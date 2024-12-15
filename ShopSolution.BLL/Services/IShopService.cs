@@ -11,5 +11,8 @@ namespace ShopSolution.BLL.Services
         Task<List<PurchaseItemDTO>> GetProductsAffordableAsync(string storeCode, decimal budget);
         Task<decimal?> BuyProductsAsync(string storeCode, List<PurchaseItemDTO> items);
         Task<StoreDTO?> FindStoreForBulkPurchaseAsync(List<PurchaseItemDTO> items);
+
+        Task<List<ProductDTO>> GetAllProductsAsync();
+        Task<Dictionary<StoreDTO, List<PurchaseItemDTO>>> GetAllStoresWithProductsAsync();
     }
 }

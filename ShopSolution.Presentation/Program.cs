@@ -1,6 +1,6 @@
 ﻿using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
-// using Microsoft.Extensions.Hosting;
+using Microsoft.Extensions.Hosting;
 using Microsoft.EntityFrameworkCore;
 using ShopSolution.BLL.Services;
 using ShopSolution.DAL.Context;
@@ -51,6 +51,8 @@ class Program
             Console.WriteLine("5: Узнать какие товары можно купить на сумму");
             Console.WriteLine("6: Купить партию товаров в магазине");
             Console.WriteLine("7: Найти магазин для партии товаров с минимальной суммой");
+            Console.WriteLine("8: Вывести все товары");
+            Console.WriteLine("9: Вывести все магазины и их товары");
             Console.WriteLine("0: Выход");
             Console.Write("Ваш выбор: ");
 
@@ -157,6 +159,34 @@ class Program
                         else
                             Console.WriteLine($"Лучший магазин: {bestStore.Code} ({bestStore.Name}, {bestStore.Address})");
                         break;
+                    case "8":
+                        var allProducts = await service.GetAllProductsAsync();
+                        Console.WriteLine("Список всех товаров:");
+                        foreach (var p in allProducts)
+                        {
+                            Console.WriteLine($"- {p.Name}");
+                        }
+                        break;
+                    case "9":
+                        var storesWithProducts = await service.GetAllStoresWithProductsAsync();
+                        Console.WriteLine("Список всех магазинов и их товаров:");
+                        foreach (var kvp in storesWithProducts)
+                        {
+                            Console.WriteLine($"Магазин {kvp.Key.Code} ({kvp.Key.Name}, {kvp.Key.Address}):");
+                            if (kvp.Value.Count == 0)
+                            {
+                                Console.WriteLine("  Нет товаров");
+                            }
+                            else
+                            {
+                                foreach (var it in kvp.Value)
+                                {
+                                    Console.WriteLine($"  {it.ProductName} x {it.Quantity}, цена: {it.Price}");
+                                }
+                            }
+                        }
+                        break;
+
                     default:
                         Console.WriteLine("Неизвестная команда.");
                         break;

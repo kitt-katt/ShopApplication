@@ -4,7 +4,7 @@ using ShopSolution.DAL.Models;
 
 namespace ShopSolution.DAL.Repositories
 {
-    public class RelationalProductRepository : IProductRepository
+    public class RelationalProductRepository : IProductRepository, IExtendedProductRepository
     {
         private readonly ShopContext _context;
 
@@ -28,6 +28,11 @@ namespace ShopSolution.DAL.Repositories
         public async Task<Product?> GetByNameAsync(string name)
         {
             return await _context.Products.FirstOrDefaultAsync(p => p.Name == name);
+        }
+
+        public async Task<List<Product>> GetAllAsync()
+        {
+            return await _context.Products.ToListAsync();
         }
     }
 }

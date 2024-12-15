@@ -1,0 +1,15 @@
+/home/kitt/Учеба_ИТМО/Семестр 1/ООП/labs/lab3_3/ShopSolution/ShopSolution.BLL/bin/Debug/net8.0/ShopSolution.BLL.deps.json
+/home/kitt/Учеба_ИТМО/Семестр 1/ООП/labs/lab3_3/ShopSolution/ShopSolution.BLL/bin/Debug/net8.0/ShopSolution.BLL.dll
+/home/kitt/Учеба_ИТМО/Семестр 1/ООП/labs/lab3_3/ShopSolution/ShopSolution.BLL/bin/Debug/net8.0/ShopSolution.BLL.pdb
+/home/kitt/Учеба_ИТМО/Семестр 1/ООП/labs/lab3_3/ShopSolution/ShopSolution.BLL/bin/Debug/net8.0/ShopSolution.DAL.dll
+/home/kitt/Учеба_ИТМО/Семестр 1/ООП/labs/lab3_3/ShopSolution/ShopSolution.BLL/bin/Debug/net8.0/ShopSolution.DAL.pdb
+/home/kitt/Учеба_ИТМО/Семестр 1/ООП/labs/lab3_3/ShopSolution/ShopSolution.BLL/obj/Debug/net8.0/ShopSolution.BLL.csproj.AssemblyReference.cache
+/home/kitt/Учеба_ИТМО/Семестр 1/ООП/labs/lab3_3/ShopSolution/ShopSolution.BLL/obj/Debug/net8.0/ShopSolution.BLL.GeneratedMSBuildEditorConfig.editorconfig
+/home/kitt/Учеба_ИТМО/Семестр 1/ООП/labs/lab3_3/ShopSolution/ShopSolution.BLL/obj/Debug/net8.0/ShopSolution.BLL.AssemblyInfoInputs.cache
+/home/kitt/Учеба_ИТМО/Семестр 1/ООП/labs/lab3_3/ShopSolution/ShopSolution.BLL/obj/Debug/net8.0/ShopSolution.BLL.AssemblyInfo.cs
+/home/kitt/Учеба_ИТМО/Семестр 1/ООП/labs/lab3_3/ShopSolution/ShopSolution.BLL/obj/Debug/net8.0/ShopSolution.BLL.csproj.CoreCompileInputs.cache
+/home/kitt/Учеба_ИТМО/Семестр 1/ООП/labs/lab3_3/ShopSolution/ShopSolution.BLL/obj/Debug/net8.0/ShopSolution.BLL.csproj.CopyComplete
+/home/kitt/Учеба_ИТМО/Семестр 1/ООП/labs/lab3_3/ShopSolution/ShopSolution.BLL/obj/Debug/net8.0/ShopSolution.BLL.dll
+/home/kitt/Учеба_ИТМО/Семестр 1/ООП/labs/lab3_3/ShopSolution/ShopSolution.BLL/obj/Debug/net8.0/refint/ShopSolution.BLL.dll
+/home/kitt/Учеба_ИТМО/Семестр 1/ООП/labs/lab3_3/ShopSolution/ShopSolution.BLL/obj/Debug/net8.0/ShopSolution.BLL.pdb
+/home/kitt/Учеба_ИТМО/Семестр 1/ООП/labs/lab3_3/ShopSolution/ShopSolution.BLL/obj/Debug/net8.0/ref/ShopSolution.BLL.dll

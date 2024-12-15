@@ -138,5 +138,29 @@ namespace ShopSolution.BLL.Services
 
             return bestStore;
         }
+
+        // Новый метод: получить все товары
+        public async Task<List<ProductDTO>> GetAllProductsAsync()
+        {
+            // Для этого нам нужны все продукты, но в IProductRepository нет метода "GetAll".
+            // Добавим этот метод в репо (см. ниже).
+            var products = await ((IExtendedProductRepository)_productRepository).GetAllAsync();
+            return products.Select(p => new ProductDTO{ Name = p.Name }).ToList();
+        }
+
+        // Новый метод: получить все магазины с их товарами
+        public async Task<Dictionary<StoreDTO, List<PurchaseItemDTO>>> GetAllStoresWithProductsAsync()
+        {
+            var stores = await _storeRepository.GetAllAsync();
+            var result = new Dictionary<StoreDTO,List<PurchaseItemDTO>>();
+            foreach (var store in stores)
+            {
+                var pinfo = await _storeProductRepository.GetProductsInStoreAsync(store.Id);
+                var items = pinfo.Select(pi => new PurchaseItemDTO{ProductName=pi.ProductName, Quantity=pi.Quantity, Price=pi.Price}).ToList();
+                var sDto = new StoreDTO {Code=store.Code, Name=store.Name, Address=store.Address};
+                result[sDto] = items;
+            }
+            return result;
+        }
     }
 }
