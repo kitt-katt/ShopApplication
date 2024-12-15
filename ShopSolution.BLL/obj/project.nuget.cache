@@ -1,0 +1,10 @@
+{
+  "version": 2,
+  "dgSpecHash": "QmlLqXpv2pLhmQWeiXYNXjZvGI2yGFqWocZiEfwUYgvob8PHIjL48VYESNp6jDLD61e5qX0ifgpMPSPin0kaig==",
+  "success": true,
+  "projectFilePath": "/home/kitt/Учеба_ИТМО/Семестр 1/ООП/labs/lab3_3/ShopSolution/ShopSolution.BLL/ShopSolution.BLL.csproj",
+  "expectedPackageFiles": [
+    "/home/kitt/.nuget/packages/microsoft.aspnetcore.app.ref/8.0.10/microsoft.aspnetcore.app.ref.8.0.10.nupkg.sha512"
+  ],
+  "logs": []
+}
