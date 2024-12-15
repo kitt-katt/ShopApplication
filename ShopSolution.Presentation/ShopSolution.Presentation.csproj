@@ -1,5 +1,10 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
 
+  <ItemGroup>
+    <ProjectReference Include="..\ShopSolution.BLL\ShopSolution.BLL.csproj" />
+    <ProjectReference Include="..\ShopSolution.DAL\ShopSolution.DAL.csproj" />
+  </ItemGroup>
+
   <PropertyGroup>
     <OutputType>Exe</OutputType>
     <TargetFramework>net8.0</TargetFramework>
